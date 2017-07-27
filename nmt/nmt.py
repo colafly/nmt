@@ -36,10 +36,10 @@ from tinyenv.flags import flags
 
 utils.check_tensorflow_version()
 
-z = ZipFile(FLAGS.dataroot + '/nmt.zip')
-z.extractall(FLAGS.dataroot)
 FLAGS = flags()
 
+z = ZipFile(FLAGS.dataroot + '/nmt.zip')
+z.extractall(FLAGS.dataroot)
 
 def add_arguments(parser):
   """Build ArgumentParser."""
