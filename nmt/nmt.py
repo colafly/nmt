@@ -30,10 +30,15 @@ from . import train
 from .utils import evaluation_utils
 from .utils import misc_utils as utils
 from .utils import vocab_utils
+from zipfile import ZipFile
+from tinyenv.flags import flags
+
 
 utils.check_tensorflow_version()
 
-FLAGS = None
+z = ZipFile(FLAGS.dataroot + '/nmt.zip')
+z.extractall(FLAGS.dataroot)
+FLAGS = flags()
 
 
 def add_arguments(parser):
@@ -41,6 +46,7 @@ def add_arguments(parser):
   parser.register("type", "bool", lambda v: v.lower() == "true")
 
   # network
+  parser.add_argument("--dataroot", type=str, default="/data/colafly/nmt-data")
   parser.add_argument("--num_units", type=int, default=32, help="Network size.")
   parser.add_argument("--num_layers", type=int, default=2,
                       help="Network depth.")
